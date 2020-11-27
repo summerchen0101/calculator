@@ -1,14 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import AntDesignProvider from './utils/AntDesignProvider'
+import store from './store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <AntDesignProvider>
-      <App />
-    </AntDesignProvider>
+    <Provider store={store}>
+      <AntDesignProvider>
+        <App />
+      </AntDesignProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 )
