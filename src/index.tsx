@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import AntDesignProvider from './utils/AntDesignProvider'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AntDesignProvider>
+      <App />
+    </AntDesignProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )
