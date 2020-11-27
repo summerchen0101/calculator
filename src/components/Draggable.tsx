@@ -1,7 +1,8 @@
 import React from 'react'
 import { default as ReactDraggable } from 'react-draggable'
 import styled from 'styled-components'
-
+import cs from 'classnames'
+import { useCalculator } from '../context/CalculatorContextProvider'
 const Box = styled.div`
   width: 480px;
   cursor: move;
@@ -19,12 +20,15 @@ const Box = styled.div`
 `
 
 const Draggable: React.FC = ({ children, ...props }) => {
+  const { visible, setVisible } = useCalculator()
   return (
-    <ReactDraggable cancel="strong">
-      <Box {...props}>
-        <strong className="no-cursor">{children}</strong>
-      </Box>
-    </ReactDraggable>
+    <div className={cs({ hidden: !visible })}>
+      <ReactDraggable cancel="strong">
+        <Box {...props}>
+          <strong className="no-cursor">{children}</strong>
+        </Box>
+      </ReactDraggable>
+    </div>
   )
 }
 
