@@ -1755,6 +1755,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/classnames@^2.2.11":
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.11.tgz#2521cc86f69d15c5b90664e4829d84566052c1cf"
+  integrity sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw==
+
 "@types/emoji-regex@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@types/emoji-regex/-/emoji-regex-8.0.0.tgz#df215c9ff818e071087fb8e7e6e74c4cb42a1303"

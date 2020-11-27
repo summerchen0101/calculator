@@ -7,13 +7,11 @@ import AntDesignProvider from './utils/AntDesignProvider'
 import store from './store'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <AntDesignProvider>
-        <App />
-      </AntDesignProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <AntDesignProvider>
+      <App />
+    </AntDesignProvider>
+  </Provider>,
   document.getElementById('root'),
 )
 
