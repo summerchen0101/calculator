@@ -6,11 +6,13 @@ interface IState {
   records: string[]
   number: number
   operator: OperatorType
+  clearStamp: boolean
 }
 const initialState: IState = {
   records: [],
   number: 0,
   operator: 'add',
+  clearStamp: false,
 }
 
 const calculatorSlice = createSlice({
@@ -18,6 +20,10 @@ const calculatorSlice = createSlice({
   initialState,
   reducers: {
     insert: (state, action: PayloadAction<string>) => {
+      if (state.clearStamp) {
+        state.number = 0
+        state.clearStamp = false
+      }
       state.number = numeral(state.number.toString() + action.payload).value()
     },
     equal: (state) => {
@@ -40,7 +46,7 @@ const calculatorSlice = createSlice({
     setOperator: (state, action: PayloadAction<OperatorType>) => {
       state.records.push(state.number.toString())
       state.records.push(action.payload)
-      state.number = 0
+      state.clearStamp = true
     },
   },
 })
