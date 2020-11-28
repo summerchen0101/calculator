@@ -35,6 +35,7 @@ const calculatorSlice = createSlice({
         state.records.push(state.number.toString())
         state.records.push(state.operator)
         state.number = 0
+        state.operator = null
       } else if (state.clearStamp) {
         state.number = 0
         state.clearStamp = false
