@@ -15,7 +15,9 @@ import numeral from 'numeral'
 
 const Wrapper = styled.div`
   padding: 15px;
+  border-radius: 10px;
   background: linear-gradient(#84baff 0%, #0b0e1c 100%);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 20%);
   @media (max-width: 768px) {
     padding: 10px;
   }
@@ -29,8 +31,12 @@ const NumberScreen = styled.div`
   text-align: right;
   padding: 0 10px;
   color: #fff;
+  white-space: nowrap;
+  overflow-x: auto;
   @media (max-width: 768px) {
     font-size: 45px;
+    height: 80px;
+    line-height: 80px;
   }
 `
 

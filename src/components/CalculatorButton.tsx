@@ -36,12 +36,17 @@ export const DefaultBtn = styled(CalculatorButton)`
     color: #fff;
     padding: 0 10px;
     font-size: 23px;
-    height: 65px;
-    border-radius: 35px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 40px;
     text-align: ${(props) => props.align || 'center'};
-    line-height: 65px;
     cursor: pointer;
     box-shadow: 0 0 2px 1px rgba(255, 255, 255, 10%);
+    @media (max-width: 768px) {
+      height: 65px;
+      border-radius: 35px;
+      line-height: 65px;
+    }
   }
 `
 export const BlueBtn = styled(DefaultBtn)`
