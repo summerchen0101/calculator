@@ -10,6 +10,7 @@ import {
   setOperator,
   equal,
   insertPoint,
+  OperatorOptions,
 } from '../store/reducers/calculatorReducer'
 import { BlueBtn, GrayBtn, DefaultBtn } from '../components/CalculatorButton'
 import numeral from 'numeral'
@@ -47,12 +48,18 @@ const Calculator: React.FC = () => {
         <DefaultBtn onClick={(e) => dispatch(insert('4'))}>4</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('5'))}>5</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('6'))}>6</DefaultBtn>
-        <BlueBtn onClick={(e) => dispatch(setOperator('subtract'))}>-</BlueBtn>
+        <BlueBtn
+          onClick={(e) => dispatch(setOperator(OperatorOptions.subtract))}
+        >
+          -
+        </BlueBtn>
 
         <DefaultBtn onClick={(e) => dispatch(insert('1'))}>1</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('2'))}>2</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('3'))}>3</DefaultBtn>
-        <BlueBtn onClick={(e) => dispatch(setOperator('add'))}>+</BlueBtn>
+        <BlueBtn onClick={(e) => dispatch(setOperator(OperatorOptions.add))}>
+          +
+        </BlueBtn>
 
         <DefaultBtn grow align="left" onClick={(e) => dispatch(insert('0'))}>
           0

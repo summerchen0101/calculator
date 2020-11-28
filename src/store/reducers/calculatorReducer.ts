@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import numeral from 'numeral'
+import numeral, { subtract } from 'numeral'
 
-type OperatorType = 'add' | 'subtract'
+type OperatorType = OperatorOptions.add | OperatorOptions.subtract
+export enum OperatorOptions {
+  add = 'add',
+  subtract = 'subtract',
+}
 interface IState {
   records: string[]
   number: number
@@ -12,7 +16,7 @@ interface IState {
 const initialState: IState = {
   records: [],
   number: 0,
-  operator: 'add',
+  operator: OperatorOptions.add,
   clearStamp: false,
   insertedPoint: false,
 }
@@ -36,10 +40,10 @@ const calculatorSlice = createSlice({
     },
     equal: (state) => {
       state.records.push(state.number.toString())
-      let currentOperator: OperatorType = 'add'
+      let currentOperator: OperatorType = OperatorOptions.add
       state.number = state.records.reduce((prev, next) => {
-        if (next === 'add' || next === 'subtract') {
-          currentOperator = next
+        if (Object.keys(OperatorOptions).includes(next)) {
+          currentOperator = OperatorOptions[next as OperatorType]
           return prev
         }
         return numeral(prev)[currentOperator](next).value()
@@ -50,7 +54,7 @@ const calculatorSlice = createSlice({
       state.records = []
       state.number = 0
     },
-    setOperator: (state, action: PayloadAction<OperatorType>) => {
+    setOperator: (state, action: PayloadAction<OperatorOptions>) => {
       state.operator = action.payload
       state.clearStamp = true
     },
