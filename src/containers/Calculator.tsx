@@ -18,7 +18,6 @@ import NumberScreen from '../components/NumberScreen'
 
 const Wrapper = styled.div`
   padding: 15px;
-  border-radius: 10px;
   background: linear-gradient(#84baff 0%, #0b0e1c 100%);
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 20%);
   @media (max-width: 768px) {
@@ -30,7 +29,7 @@ const Calculator: React.FC = () => {
   const number = useTypedSelector((state) => state.calculator.number)
   const dispatch = useDispatch()
   return (
-    <Wrapper>
+    <Wrapper className="calculator">
       <NumberScreen>{numeral(number).value()}</NumberScreen>
       <Row gutter={16}>
         <GrayBtn color="gray" onClick={(e) => dispatch(clear())}>

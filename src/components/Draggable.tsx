@@ -14,6 +14,9 @@ const Box = styled.div`
   .no-cursor {
     cursor: auto;
   }
+  .calculator {
+    border-radius: 10px;
+  }
   @media (max-width: 768px) {
     padding: 15px;
     width: 360px;
