@@ -8,12 +8,20 @@ interface Props {
   color?: string
   align?: 'left' | 'right' | 'center'
   size?: 'small' | 'default'
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
-const CalculatorButton: React.FC<Props> = ({ children, ...props }) => {
+const CalculatorButton: React.FC<Props> = ({
+  children,
+  onClick,
+  grow,
+  ...props
+}) => {
   return (
-    <Col span={props.grow ? 12 : 6} {...props}>
-      <div className="circle">{children}</div>
+    <Col span={grow ? 12 : 6} {...props}>
+      <div className="circle" onClick={onClick}>
+        {children}
+      </div>
     </Col>
   )
 }

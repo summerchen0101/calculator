@@ -1,8 +1,17 @@
 import { Drawer, Row } from 'antd'
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useCalculator } from '../context/CalculatorContextProvider'
+import { useTypedSelector } from '../store'
+import {
+  insert,
+  clear,
+  setOperator,
+  equal,
+} from '../store/reducers/calculatorReducer'
 import { BlueBtn, GrayBtn, DefaultBtn } from './CalculatorButton'
+import numeral from 'numeral'
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -26,35 +35,39 @@ const NumberScreen = styled.div`
 `
 
 const Calculator: React.FC = () => {
+  const number = useTypedSelector((state) => state.calculator.number)
+  const dispatch = useDispatch()
   return (
     <Wrapper>
-      <NumberScreen>232,000</NumberScreen>
+      <NumberScreen>{numeral(number).format('0,0')}</NumberScreen>
       <Row gutter={16}>
-        <GrayBtn color="gray">AC</GrayBtn>
+        <GrayBtn color="gray" onClick={(e) => dispatch(clear())}>
+          AC
+        </GrayBtn>
         <GrayBtn>+/-</GrayBtn>
         <GrayBtn>%</GrayBtn>
         <BlueBtn>÷</BlueBtn>
 
-        <DefaultBtn>7</DefaultBtn>
-        <DefaultBtn>8</DefaultBtn>
-        <DefaultBtn>9</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('7'))}>7</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('8'))}>8</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('9'))}>9</DefaultBtn>
         <BlueBtn>x</BlueBtn>
 
-        <DefaultBtn>4</DefaultBtn>
-        <DefaultBtn>5</DefaultBtn>
-        <DefaultBtn>6</DefaultBtn>
-        <BlueBtn>-</BlueBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('4'))}>4</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('5'))}>5</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('6'))}>6</DefaultBtn>
+        <BlueBtn onClick={(e) => dispatch(setOperator('subtract'))}>-</BlueBtn>
 
-        <DefaultBtn>1</DefaultBtn>
-        <DefaultBtn>2</DefaultBtn>
-        <DefaultBtn>3</DefaultBtn>
-        <BlueBtn>+</BlueBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('1'))}>1</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('2'))}>2</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('3'))}>3</DefaultBtn>
+        <BlueBtn onClick={(e) => dispatch(setOperator('add'))}>+</BlueBtn>
 
-        <DefaultBtn grow align="left">
+        <DefaultBtn grow align="left" onClick={(e) => dispatch(insert('0'))}>
           0
         </DefaultBtn>
-        <DefaultBtn>.</DefaultBtn>
-        <BlueBtn>=</BlueBtn>
+        <DefaultBtn onClick={(e) => dispatch(insert('.'))}>.</DefaultBtn>
+        <BlueBtn onClick={(e) => dispatch(equal())}>=</BlueBtn>
       </Row>
     </Wrapper>
   )
