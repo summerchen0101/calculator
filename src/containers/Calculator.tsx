@@ -38,12 +38,18 @@ const Calculator: React.FC = () => {
         </GrayBtn>
         <GrayBtn>+/-</GrayBtn>
         <GrayBtn>%</GrayBtn>
-        <BlueBtn>÷</BlueBtn>
+        <BlueBtn onClick={(e) => dispatch(setOperator(OperatorOptions.divide))}>
+          ÷
+        </BlueBtn>
 
         <DefaultBtn onClick={(e) => dispatch(insert('7'))}>7</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('8'))}>8</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('9'))}>9</DefaultBtn>
-        <BlueBtn>x</BlueBtn>
+        <BlueBtn
+          onClick={(e) => dispatch(setOperator(OperatorOptions.multiply))}
+        >
+          x
+        </BlueBtn>
 
         <DefaultBtn onClick={(e) => dispatch(insert('4'))}>4</DefaultBtn>
         <DefaultBtn onClick={(e) => dispatch(insert('5'))}>5</DefaultBtn>
