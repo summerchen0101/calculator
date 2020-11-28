@@ -21,6 +21,8 @@ const calculatorSlice = createSlice({
   reducers: {
     insert: (state, action: PayloadAction<string>) => {
       if (state.clearStamp) {
+        state.records.push(state.number.toString())
+        state.records.push(state.operator)
         state.number = 0
         state.clearStamp = false
       }
@@ -40,12 +42,10 @@ const calculatorSlice = createSlice({
     },
     clear: (state) => {
       state.records = []
-      state.operator = 'add'
       state.number = 0
     },
     setOperator: (state, action: PayloadAction<OperatorType>) => {
-      state.records.push(state.number.toString())
-      state.records.push(action.payload)
+      state.operator = action.payload
       state.clearStamp = true
     },
   },
