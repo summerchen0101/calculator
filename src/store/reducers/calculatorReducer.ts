@@ -35,14 +35,14 @@ const calculatorSlice = createSlice({
         state.records.push(state.number.toString())
         state.records.push(state.operator)
         state.number = 0
-        state.operator = null
       } else if (state.clearStamp) {
         state.number = 0
-        state.clearStamp = false
       } else if (state.insertedPoint) {
         action.payload = `.${action.payload}`
-        state.insertedPoint = false
       }
+      state.operator = null
+      state.clearStamp = false
+      state.insertedPoint = false
       state.number = numeral(state.number.toString() + action.payload).value()
     },
     equal: (state) => {
