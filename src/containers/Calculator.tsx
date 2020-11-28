@@ -10,8 +10,9 @@ import {
   setOperator,
   equal,
 } from '../store/reducers/calculatorReducer'
-import { BlueBtn, GrayBtn, DefaultBtn } from './CalculatorButton'
+import { BlueBtn, GrayBtn, DefaultBtn } from '../components/CalculatorButton'
 import numeral from 'numeral'
+import NumberScreen from '../components/NumberScreen'
 
 const Wrapper = styled.div`
   padding: 15px;
@@ -20,23 +21,6 @@ const Wrapper = styled.div`
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 20%);
   @media (max-width: 768px) {
     padding: 10px;
-  }
-`
-
-const NumberScreen = styled.div`
-  height: 90px;
-  font-size: 55px;
-  letter-spacing: 1px;
-  line-height: 90px;
-  text-align: right;
-  padding: 0 10px;
-  color: #fff;
-  white-space: nowrap;
-  overflow-x: auto;
-  @media (max-width: 768px) {
-    font-size: 45px;
-    height: 80px;
-    line-height: 80px;
   }
 `
 

@@ -21,7 +21,7 @@ const Box = styled.div`
 `
 
 const Draggable: React.FC = ({ children, ...props }) => {
-  const { visible, setVisible } = useCalculator()
+  const { visible } = useCalculator()
   return (
     <div className={cs({ hidden: !visible })}>
       <ReactDraggable cancel="strong">
