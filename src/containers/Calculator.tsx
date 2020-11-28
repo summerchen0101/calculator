@@ -9,6 +9,7 @@ import {
   clear,
   setOperator,
   equal,
+  insertPoint,
 } from '../store/reducers/calculatorReducer'
 import { BlueBtn, GrayBtn, DefaultBtn } from '../components/CalculatorButton'
 import numeral from 'numeral'
@@ -29,7 +30,7 @@ const Calculator: React.FC = () => {
   const dispatch = useDispatch()
   return (
     <Wrapper>
-      <NumberScreen>{numeral(number).format('0,0')}</NumberScreen>
+      <NumberScreen>{numeral(number).value()}</NumberScreen>
       <Row gutter={16}>
         <GrayBtn color="gray" onClick={(e) => dispatch(clear())}>
           AC
@@ -56,7 +57,7 @@ const Calculator: React.FC = () => {
         <DefaultBtn grow align="left" onClick={(e) => dispatch(insert('0'))}>
           0
         </DefaultBtn>
-        <DefaultBtn onClick={(e) => dispatch(insert('.'))}>.</DefaultBtn>
+        <DefaultBtn onClick={(e) => dispatch(insertPoint())}>.</DefaultBtn>
         <BlueBtn onClick={(e) => dispatch(equal())}>=</BlueBtn>
       </Row>
     </Wrapper>
