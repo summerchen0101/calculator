@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import numeral, { subtract } from 'numeral'
+import numeral from 'numeral'
 
 export enum OperatorOptions {
   add = 'add',
@@ -8,18 +8,20 @@ export enum OperatorOptions {
   divide = 'divide',
 }
 
+type OperatorTypeWithNull = null | OperatorType
 type OperatorType = keyof typeof OperatorOptions
+
 interface IState {
   records: string[]
   number: number
-  operator: OperatorType
+  operator: OperatorTypeWithNull
   clearStamp: boolean
   insertedPoint: boolean
 }
 const initialState: IState = {
   records: [],
   number: 0,
-  operator: OperatorOptions.add,
+  operator: null,
   clearStamp: false,
   insertedPoint: false,
 }
@@ -29,13 +31,14 @@ const calculatorSlice = createSlice({
   initialState,
   reducers: {
     insert: (state, action: PayloadAction<string>) => {
-      if (state.clearStamp) {
+      if (state.operator) {
         state.records.push(state.number.toString())
         state.records.push(state.operator)
         state.number = 0
+      } else if (state.clearStamp) {
+        state.number = 0
         state.clearStamp = false
-      }
-      if (state.insertedPoint) {
+      } else if (state.insertedPoint) {
         action.payload = `.${action.payload}`
         state.insertedPoint = false
       }
@@ -52,18 +55,24 @@ const calculatorSlice = createSlice({
         return numeral(prev)[currentOperator](next).value()
       }, 0)
       state.records = []
+      state.operator = null
       state.clearStamp = true
     },
     clear: (state) => {
       state.records = []
       state.number = 0
+      state.operator = null
+      state.clearStamp = false
+      state.insertedPoint = false
     },
     setOperator: (state, action: PayloadAction<OperatorOptions>) => {
       state.operator = action.payload
-      state.clearStamp = true
     },
     insertPoint: (state) => {
+      if (state.number % 1 != 0) return
       state.insertedPoint = true
+      state.clearStamp = false
+      state.operator = null
     },
   },
 })
